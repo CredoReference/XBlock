@@ -174,14 +174,14 @@ class XBlock(XmlSerializationMixin, HierarchyMixin, ScopedStorageMixin, RuntimeS
         """
         return Validation(self.scope_ids.usage_id)
 
-    def _(self, text):
+    def ugettext(self, text):
         """
-        Hand the translation work off to the runtime's I18N service
+        Translates message/text and returns it in a unicode string.
+        Using runtime to get i18n service.
         """
         runtime_service = self.runtime.service(self, "i18n")
         runtime_ugettext = runtime_service.ugettext
-        response = runtime_ugettext(text)
-        return response
+        return runtime_ugettext(text)
 
 
 class XBlockAside(XmlSerializationMixin, ScopedStorageMixin, RuntimeServicesMixin, HandlersMixin, SharedBlockBase):
